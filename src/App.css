@@ -53,38 +53,15 @@ ul li {
   "header header"
   "nav main-content"; */
   /* grid-template-rows: 100px 1fr; */
-  grid-template-columns:1fr 3fr;
-  grid-auto-rows:minmax(100px, auto);
-  grid-gap:1em;
-  justify-items:stretch;
-  align-items:stretch;  
+  grid-template-columns: 1fr 3fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 1em;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
-.round-borders{
+.round-borders {
   border-radius: 6px;
 }
 
-.Header {
-  grid-area: header;
-  background-color: lightgreen;  
-  grid-column: 1/3;
-  grid-row: 1/2;
-}
 
-nav{
-  /* grid-area: nav; */
-  background-color: lightgreen;  
-  grid-column: 1/2;
-  grid-row: 2/3;
-}
-
-.main-content{
-  /* grid-area: main-content; */
-  background-color: lightsalmon;
-  grid-column: 2/3;
-  grid-row: 2/3;
-}
-
-.Baner{
-  text-align: center;
-}

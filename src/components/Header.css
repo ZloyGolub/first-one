@@ -1,0 +1,7 @@
+.Header {
+    grid-area: header;
+    background-color: lightgreen;  
+    grid-column: 1/3;
+    grid-row: 1/2;
+  }
+  
