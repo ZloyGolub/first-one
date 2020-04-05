@@ -2,13 +2,13 @@ nav {
     /* grid-area: nav; */
     background-color: grey;
     grid-column: 1/2;
-    grid-row: 2/3;
+    grid-row: 2/3;    
 }
 
 .item>a {
     padding: 5px 0px 0px 5px;
     color: white;
-    text-decoration: none;
+    text-decoration: none;    
 }
 
 .item>a:hover {
@@ -20,6 +20,6 @@ nav {
 .navigation {
     padding-top: 10px;
     padding-bottom: 15px;
-    padding-left: 10px;
-    font-size: 1.5em;
+    padding-left: 10px;    
+    font-size: 2rem;
 }

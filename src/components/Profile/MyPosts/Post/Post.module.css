@@ -1,0 +1,21 @@
+.post_wraper{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+}
+
+.post_wraper> div {
+    align-self: baseline;
+    padding: 0 5px;
+    text-align: justify;
+    font-size: 1.3rem;
+}             
+
+.post_wraper > img{
+    border-radius: 50%;
+}
+
+.name{
+    font-weight: bold;
+}
