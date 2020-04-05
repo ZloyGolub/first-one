@@ -1,7 +1,10 @@
-.Header {
-    grid-area: header;
-    background-color: lightgreen;  
-    grid-column: 1/3;
-    grid-row: 1/2;
-  }
-  
+
+.header_styling{
+    text-align: center;
+}
+
+.header_styling img{
+    border-radius: 6px;
+    width: 100%;
+    object-fit: cover;
+}

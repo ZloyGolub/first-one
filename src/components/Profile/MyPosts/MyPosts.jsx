@@ -1,11 +1,10 @@
 import React from 'react';
-import './../../../App.css';
 import PostsMod from './MyPosts.module.css';
 import Post from './Post/Post';
 
 function Posts(){
     return(
-        <div className={`${PostsMod.wraper} round-borders`}>
+        <div className={`${PostsMod.wraper} ${PostsMod.wraper_round}`}>
             My Posts
             <div>New post</div>
             <div>

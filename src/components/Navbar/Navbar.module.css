@@ -1,9 +1,4 @@
-nav {
-    /* grid-area: nav; */
-    background-color: grey;
-    grid-column: 1/2;
-    grid-row: 2/3;    
-}
+
 
 .item>a {
     padding: 5px 0px 0px 5px;
@@ -17,6 +12,9 @@ nav {
     text-decoration: none;
 }
 
+.item a.active {
+    color: lime;
+}
 .navigation {
     padding-top: 10px;
     padding-bottom: 15px;

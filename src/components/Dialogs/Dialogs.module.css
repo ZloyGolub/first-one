@@ -1,8 +1,4 @@
-.wraper{
+.wrapper{
     background-color: aqua;
-    margin: 5px;
-}
-
-.wraper_round{
     border-radius: 6px;
 }
