@@ -1,4 +1,29 @@
 .wrapper{
     background-color: aqua;
     border-radius: 6px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-gap: 15px;
+    padding: 10px;
+    font-size: 1.5rem;    
+}
+
+.Members {
+    font-weight: bold;
+}
+
+.Members a{
+    color: white;
+    text-decoration:  none;
+    
+}
+
+.Members a:hover {
+    color: rgb(255, 0, 0);
+    transition: color 0.2s linear;
+    text-decoration:  none;
+}
+
+.Members a.active_member {
+    color: rgb(255, 0, 0);
 }
