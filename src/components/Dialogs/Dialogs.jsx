@@ -1,24 +1,7 @@
 import React from 'react';
-import DialogsMod from './Dialogs.module.css';
-import { NavLink } from 'react-router-dom';
-
-function Dialog(props) {
-    let path = "/messages/" + props.path;
-
-    return (
-    <div>        
-        <NavLink activeClassName={DialogsMod.active_member} to={path}>{props.Name}</NavLink>
-    </div>
-    );
-}
-
-function Message(props) {
-    return (
-        <div>
-            {props.Message}
-        </div>
-    );
-}
+import s from './Dialogs.module.css';
+import Dialog from './Dialog/Dialog';
+import Message from './Message/Message';
 
 function Dialogs(props) {
     
@@ -46,16 +29,15 @@ function Dialogs(props) {
     let messageArr = messagesData.map(x => (<Message  Message={x.Message} id={x.id}/>));
 
     return (
-        <div className={DialogsMod.wrapper}>
-            <div className={DialogsMod.Members}>
+        <div className={s.wrapper}>
+            <div>
                 {dialogArr}
             </div>
-            <div className={DialogsMod.MessageStack}>
+            <div className={s.MessageStack}>
                 {messageArr}
             </div>
         </div>
     );
 }
-
 
 export default Dialogs;

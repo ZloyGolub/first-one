@@ -1,5 +1,5 @@
 import React from 'react';
-import PostsMod from './MyPosts.module.css';
+import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 function Posts(){
@@ -11,7 +11,7 @@ function Posts(){
     let postArr = postData.map(x => (<Post id={x.id} name={x.name} likes={x.likes}/>));
 
     return(
-        <div className={`${PostsMod.wraper} ${PostsMod.wraper_round}`}>
+        <div className={`${s.wraper} ${s.wraper_round}`}>
             My Posts
             <div>New post</div>
             <div>
