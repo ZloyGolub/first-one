@@ -7,7 +7,9 @@ function Post(props) {
             <img src="https://dummyimage.com/100x100/f0f0f0/aaa" alt="" />
             <div className={s.iner}>
                 <div className={s.name}>{props.name}</div>
-                <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero facere corporis consequuntur ullam distinctio iure. Distinctio autem quidem molestiae ducimus minus dolore voluptates eligendi, ea odit vero alias hic omnis.</div>
+                <div>
+                    {props.postText}
+                </div>
                 <br></br>
                 <div>Likes {props.likes}</div>
             </div>

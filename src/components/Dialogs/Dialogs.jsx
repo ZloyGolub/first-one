@@ -4,37 +4,39 @@ import Dialog from './Dialog/Dialog';
 import Message from './Message/Message';
 
 function Dialogs(props) {
-    
-    let dialogsData = [
-        {id: 0, name: 'Andrew'},
-        {id: 1, name: 'Sasha'},
-        {id: 2, name: 'Alex'},
-        {id: 3, name: 'Mark'},
-        {id: 4, name: 'Victor'}
-    ];
 
-    let messagesData = [
-        {id: 0, Message: 'Hi, i`m Andrew'},
-        {id: 1, Message: 'Hi, i`m Sasha'},
-        {id: 2, Message: 'Hi, i`m Alex'},
-        {id: 3, Message: 'Hi, i`m Mark'},
-        {id: 4, Message: 'Hi, i`m Victor'}
-    ]
     // let dialogArr = dialogsData.map(
     //     (x) => {
     //         return <Dialog Name={x.name} path={x.id}/>;
     //     }
     // )
-    let dialogArr = dialogsData.map(x => (<Dialog Name={x.name} path={x.id}/>));
-    let messageArr = messagesData.map(x => (<Message  Message={x.Message} id={x.id}/>));
+    let dialogArr = props.state.dialogsData.map(x => (<Dialog Name={x.name} path={x.id} />));
+    let messageArr = props.state.messagesData.map(x => (<Message Message={x.Message} id={x.id} />));
+
+    let messageContent = React.createRef();
+
+    function sendMessage() {
+        let text = messageContent.current.value;
+        alert(text);
+    }
 
     return (
         <div className={s.wrapper}>
             <div>
                 {dialogArr}
             </div>
-            <div className={s.MessageStack}>
-                {messageArr}
+            <div>
+                <div>
+                    {messageArr}
+                </div>
+                <div>
+                    <div>
+                        <textarea ref={messageContent}></textarea>
+                    </div>
+                    <div>
+                        <button onClick={sendMessage}>Send</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
