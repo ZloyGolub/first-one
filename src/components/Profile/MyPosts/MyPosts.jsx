@@ -8,20 +8,28 @@ function Posts(props) {
 
     let newPostElement = React.createRef();
 
-    function addPost() {
-        let text = newPostElement.current.value;
-        props.addPost(text);
-    }
+    // function addPost() {
+    //     props.addPost();
+    // }
+
+    // function updateNewPost() {
+    //     props.updateNewPost(newPostElement.current.value);
+    // }
 
     return (
         <div className={`${s.wraper} ${s.wraper_round}`}>
             <h3>My Posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea
+                        onChange={() => props.updateNewPost(newPostElement.current.value)}
+                        value={props.newPostContent}
+                        ref={newPostElement}>
+
+                    </textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={() => props.addPost()}>Add post</button>
                 </div>
             </div>
             <div>

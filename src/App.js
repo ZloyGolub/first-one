@@ -14,25 +14,27 @@ import { Route } from 'react-router-dom';
 
 function App(props) {
   return (
-    
-      <div className="app-wrapper">
-        <div className="Header round-borders">
-          <Header />
-        </div>
-        <div className="navigation round-borders">
-          <Navbar />
-        </div>
-        <div className="main_content round-borders">
-          <Route path="/profile" render={() => <Profile state={props.state.profile} addPost={props.addPost}/>} />
-          <Route path="/messages" render={() => <Dialogs state={props.state.dialog}/>} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/news" render={() => <News />} />
-          <Route path="/settings" render={() => <Settings />} />
-        </div>
-        <div className="footer round-borders">
-          <Footer />
-        </div>
+    <div className="app-wrapper">
+      <div className="Header round-borders">
+        <Header />
       </div>
+      <div className="navigation round-borders">
+        <Navbar />
+      </div>
+      <div className="main_content round-borders">
+        <Route path="/profile" render={() => <Profile
+          state={props.state.profile}
+          addPost={props.addPost} 
+          updateNewPost={props.updateNewPost}/>} />
+        <Route path="/messages" render={() => <Dialogs state={props.state.dialog} />} />
+        <Route path="/music" render={() => <Music />} />
+        <Route path="/news" render={() => <News />} />
+        <Route path="/settings" render={() => <Settings />} />
+      </div>
+      <div className="footer round-borders">
+        <Footer />
+      </div>
+    </div>
   );
 }
 

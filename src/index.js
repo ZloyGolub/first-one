@@ -1,21 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import state from './redux/state';
-import {addPost} from './redux/state';
+import {addPost,  updateNewPost } from './redux/state';
+import * as serviceWorker from './serviceWorker';
+import renderPage from "./render";
 
-import { BrowserRouter } from 'react-router-dom';
+renderPage(state, addPost, updateNewPost);
 
-//addPost("Snake goes hsssss");
-
-ReactDOM.render(
-    <BrowserRouter>
-        <App state={state} addPost={addPost}/>
-    </BrowserRouter>,
-    document.getElementById('root')
-);
 
 // ReactDOM.render(<Header />, document.getElementById('root'));
 

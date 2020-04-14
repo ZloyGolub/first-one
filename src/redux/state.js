@@ -1,10 +1,12 @@
+import renderPage from "../render";
 
 let state = {
     profile: {
         postsData: [
-            { id: 0, name: "Cat", postText: "Some text. Meow",  likes: 15 },
+            { id: 0, name: "Cat", postText: "Some text. Meow", likes: 15 },
             { id: 1, name: "Dog", postText: "Bark", likes: 13 }
-        ]
+        ],
+        newPostContent: "Write some"
     },
     dialog: {
         dialogsData: [
@@ -24,15 +26,21 @@ let state = {
     }
 }
 
-export let addPost = (text) =>{
-    let newPost = {       
+export let addPost = () => {
+    let newPost = {
         id: state.profile.postsData.length,
         name: "Snek",
-        postText: text,
+        postText: state.profile.newPostContent,
         likes: 0
     }
-
     state.profile.postsData.push(newPost);
+    state.profile.newPostContent = '';
+    renderPage(state, addPost, updateNewPost);
+}
+
+export let updateNewPost = (text) => {
+    state.profile.newPostContent = text;
+    renderPage(state, addPost, updateNewPost);
 }
 
 export default state;
