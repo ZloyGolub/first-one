@@ -1,11 +1,24 @@
+import React from 'react';
 import './index.css';
-import state from './redux/state';
-import {addPost,  updateNewPost } from './redux/state';
+import App from './App';
+import ReactDOM from 'react-dom';
+import state, { subscribe } from './redux/state';
 import * as serviceWorker from './serviceWorker';
-import renderPage from "./render";
+import {addPost,  updateNewPost } from './redux/state';
+import { BrowserRouter } from 'react-router-dom';
 
-renderPage(state, addPost, updateNewPost);
+let renderPage = (state) => ReactDOM.render(  
+    
+    <BrowserRouter>
+        <App state={state} addPost={addPost} updateNewPost={updateNewPost}/>
+    </BrowserRouter>,
+    document.getElementById('root')
+    
+);
 
+renderPage(state);
+
+subscribe(renderPage);
 
 // ReactDOM.render(<Header />, document.getElementById('root'));
 

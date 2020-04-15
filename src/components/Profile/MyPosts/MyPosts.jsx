@@ -6,6 +6,7 @@ function Posts(props) {
 
     let postArr = props.postsData.map(x => (<Post id={x.id} name={x.name} postText={x.postText} likes={x.likes} />));
 
+    
     let newPostElement = React.createRef();
 
     // function addPost() {
@@ -25,7 +26,6 @@ function Posts(props) {
                         onChange={() => props.updateNewPost(newPostElement.current.value)}
                         value={props.newPostContent}
                         ref={newPostElement}>
-
                     </textarea>
                 </div>
                 <div>

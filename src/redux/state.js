@@ -1,5 +1,3 @@
-import renderPage from "../render";
-
 let state = {
     profile: {
         postsData: [
@@ -26,7 +24,7 @@ let state = {
     }
 }
 
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: state.profile.postsData.length,
         name: "Snek",
@@ -35,12 +33,21 @@ export let addPost = () => {
     }
     state.profile.postsData.push(newPost);
     state.profile.newPostContent = '';
-    renderPage(state, addPost, updateNewPost);
+    reRenderPage(state);
 }
 
-export let updateNewPost = (text) => {
+export const updateNewPost = (text) => {   
     state.profile.newPostContent = text;
-    renderPage(state, addPost, updateNewPost);
+    reRenderPage(state);
 }
+
+let reRenderPage = () => {
+
+}
+
+export const subscribe = (observer) => {
+    reRenderPage = observer;
+}
+
 
 export default state;
