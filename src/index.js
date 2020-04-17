@@ -2,23 +2,22 @@ import React from 'react';
 import './index.css';
 import App from './App';
 import ReactDOM from 'react-dom';
-import state, { subscribe } from './redux/state';
+import store from './redux/state';
 import * as serviceWorker from './serviceWorker';
-import {addPost,  updateNewPost } from './redux/state';
 import { BrowserRouter } from 'react-router-dom';
 
 let renderPage = (state) => ReactDOM.render(  
     
     <BrowserRouter>
-        <App state={state} addPost={addPost} updateNewPost={updateNewPost}/>
+        <App state={state} addPost={store.addPost.bind(store)} updateNewPost={store.updateNewPost.bind(store)}/>
     </BrowserRouter>,
     document.getElementById('root')
     
 );
 
-renderPage(state);
+renderPage(store.getState());
 
-subscribe(renderPage);
+store.subscribe(renderPage);
 
 // ReactDOM.render(<Header />, document.getElementById('root'));
 
