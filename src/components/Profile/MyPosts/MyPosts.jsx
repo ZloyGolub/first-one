@@ -1,21 +1,20 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
+import { actionAddPost, actionUpdatePost } from '../../../redux/state';
 
 function Posts(props) {
 
-    let postArr = props.postsData.map(x => (<Post id={x.id} name={x.name} postText={x.postText} likes={x.likes} />));
+    let postArr = props.state.postsData.map(x => (<Post id={x.id} name={x.name} postText={x.postText} likes={x.likes} />));
+ 
+    function addPost() {
+        props.dispatch(actionAddPost());
+    }
 
-    
-    let newPostElement = React.createRef();
-
-    // function addPost() {
-    //     props.addPost();
-    // }
-
-    // function updateNewPost() {
-    //     props.updateNewPost(newPostElement.current.value);
-    // }
+    function updateNewPost(e) {   
+        let text = e.target.value;
+        props.dispatch(actionUpdatePost(text));
+    }
 
     return (
         <div className={`${s.wraper} ${s.wraper_round}`}>
@@ -23,21 +22,17 @@ function Posts(props) {
             <div>
                 <div>
                     <textarea
-                        onChange={() => props.updateNewPost(newPostElement.current.value)}
-                        value={props.newPostContent}
-                        ref={newPostElement}>
+                        onChange={updateNewPost}
+                        value={props.state.newPostContent}
+                        placeholder="Enter your post">                    
                     </textarea>
                 </div>
                 <div>
-                    <button onClick={() => props.addPost()}>Add post</button>
+                    <button on onClick={addPost}>Add post</button>
                 </div>
             </div>
             <div>
                 {postArr}
-                {/* <Post name={postData[0].name} likes={postData[0].likes}/>
-                <Post name={postData[1].name} likes={postData[1].likes}/>
-                <Post name={postData[2]?.name?? "None"} likes={postData[2]?.likes ?? "None"}/> */}
-
             </div>
         </div>
     );

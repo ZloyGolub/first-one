@@ -23,9 +23,10 @@ function App(props) {
       <div className="main_content round-borders">
         <Route path="/profile" render={() => <Profile
           state={props.state.profile}
-          addPost={props.addPost} 
-          updateNewPost={props.updateNewPost}/>} />
-        <Route path="/messages" render={() => <Dialogs state={props.state.dialog} />} />
+          dispatch={props.dispatch}/>} />
+        <Route path="/messages" render={() => <Dialogs 
+          state={props.state.dialog}
+          dispatch={props.dispatch} />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />
