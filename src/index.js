@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import App from './App';
 import ReactDOM from 'react-dom';
-import store from './redux/state';
+import store from './redux/reduxStore';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -17,7 +17,9 @@ let renderPage = (state) => ReactDOM.render(
 
 renderPage(store.getState());
 
-store.subscribe(renderPage);
+store.subscribe(()=>{
+    renderPage(store.getState())
+});
 
 // ReactDOM.render(<Header />, document.getElementById('root'));
 
