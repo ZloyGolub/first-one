@@ -18,6 +18,13 @@ function Dialogs(props) {
         props.dispatch(actionSendMessage());
     }
 
+    function onEnterPress(e) {
+        if(e.keyCode == 13 && e.shiftKey == false)
+        {
+            props.dispatch(actionSendMessage());
+        }
+    }
+
     function updateMessage(e){        
         let text = e.target.value;
         props.dispatch(actionUpdateMessage(text));
@@ -34,7 +41,7 @@ function Dialogs(props) {
                 </div>
                 <div>
                     <div>
-                        <textarea value={props.state.newMessageContent}
+                        <textarea onKeyDown={onEnterPress} value={props.state.newMessageContent}
                          onChange={updateMessage}></textarea>
                     </div>
                     <div>
