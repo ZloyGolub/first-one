@@ -6,19 +6,19 @@ import store from './redux/reduxStore';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
-let renderPage = (state) => ReactDOM.render(  
+let renderPage = () => ReactDOM.render(  
     
     <BrowserRouter>
-        <App state={state} dispatch={store.dispatch.bind(store)}/>
+        <App dispatch={store.dispatch.bind(store)} store={store}/>
     </BrowserRouter>,
     document.getElementById('root')
     
 );
 
-renderPage(store.getState());
+renderPage();
 
 store.subscribe(()=>{
-    renderPage(store.getState())
+    renderPage()
 });
 
 // ReactDOM.render(<Header />, document.getElementById('root'));

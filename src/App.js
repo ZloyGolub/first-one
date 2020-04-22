@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Footer from './components/Footer/Footer';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
@@ -21,12 +21,8 @@ function App(props) {
         <Navbar />
       </div>
       <div className="main_content round-borders">
-        <Route path="/profile" render={() => <Profile
-          state={props.state.profile}
-          dispatch={props.dispatch}/>} />
-        <Route path="/messages" render={() => <Dialogs 
-          state={props.state.dialog}
-          dispatch={props.dispatch} />} />
+        <Route path="/profile" render={() => <Profile store={props.store} />} />
+        <Route path="/messages" render={() => <DialogsContainer store={props.store} />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />

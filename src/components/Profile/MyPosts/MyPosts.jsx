@@ -1,19 +1,18 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import { actionAddPost, actionUpdatePost } from '../../../redux/profileReducer';
 
-function Posts(props) {
+function MyPosts(props) {
 
-    let postArr = props.state.postsData.map(x => (<Post id={x.id} name={x.name} postText={x.postText} likes={x.likes} />));
+    let postArr = props.postsData.map(x => (<Post id={x.id} name={x.name} postText={x.postText} likes={x.likes} />));
  
     function addPost() {
-        props.dispatch(actionAddPost());
+        props.addPost();
     }
 
     function updateNewPost(e) {   
         let text = e.target.value;
-        props.dispatch(actionUpdatePost(text));
+        props.updatePost(text);
     }
 
     return (
@@ -23,7 +22,7 @@ function Posts(props) {
                 <div>
                     <textarea
                         onChange={updateNewPost}
-                        value={props.state.newPostContent}
+                        value={props.newPostContent}
                         placeholder="Enter your post">                    
                     </textarea>
                 </div>
@@ -39,4 +38,4 @@ function Posts(props) {
 }
 
 
-export default Posts;
+export default MyPosts;
