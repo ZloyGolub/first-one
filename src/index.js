@@ -5,19 +5,21 @@ import ReactDOM from 'react-dom';
 import store from './redux/reduxStore';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-let renderPage = () => ReactDOM.render(  
-    
+let renderPage = () => ReactDOM.render(
     <BrowserRouter>
-        <App dispatch={store.dispatch.bind(store)} store={store}/>
+        <Provider store={store}>
+            <App />
+        </Provider>
     </BrowserRouter>,
     document.getElementById('root')
-    
+
 );
 
 renderPage();
 
-store.subscribe(()=>{
+store.subscribe(() => {
     renderPage()
 });
 

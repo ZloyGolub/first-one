@@ -21,8 +21,8 @@ function App(props) {
         <Navbar />
       </div>
       <div className="main_content round-borders">
-        <Route path="/profile" render={() => <Profile store={props.store} />} />
-        <Route path="/messages" render={() => <DialogsContainer store={props.store} />} />
+        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/messages" render={() => <DialogsContainer />} />
         <Route path="/music" render={() => <Music />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />
