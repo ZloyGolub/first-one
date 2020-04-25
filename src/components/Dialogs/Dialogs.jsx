@@ -10,13 +10,12 @@ function Dialogs(props) {
     //         return <Dialog Name={x.name} path={x.id}/>;
     //     }
     // )
-    debugger
     let state = props.dialog;
 
     let dialogArr = state.dialogsData.map(x => (<Dialog Name={x.name} path={x.id} />));
     let messageArr = state.messagesData.map(x => (<Message Message={x.Message} id={x.id} />));
 
-    function sendMessage() {
+    function sendMessage(e) {
         props.sendMessage();
     }
 
@@ -43,8 +42,11 @@ function Dialogs(props) {
                 </div>
                 <div>
                     <div>
-                        <textarea onKeyDown={onEnterPress} value={props.newMessageContent}
-                         onChange={updateMessage}></textarea>
+                        <textarea 
+                        onKeyDown={onEnterPress} 
+                        value={state.newMessageContent}
+                        onChange={updateMessage}
+                        placeholder="Enter your message"></textarea>
                     </div>
                     <div>
                         <button onClick={sendMessage}>Send</button>

@@ -1,6 +1,3 @@
-import { createStore } from "redux";
-import { redusers } from "./reduxStore";
-
 const SEND_MESSAGE = "SEND_MESSAGE";
 const UPDATE_MESSAGE = "UPDATE_MESSAGE";
 
@@ -25,25 +22,27 @@ let initialState = {
 
 const dialogReducer = (state = initialState, action) => {
 
-    let stateCopy = {
-        ...state,
-        messagesData: [...state.messagesData]
+    // let stateCopy = {
+    //     ...state,
+    //     messagesData: [...state.messagesData]
     
-    };
-    debugger
+    // };
     switch (action.type) {
         case SEND_MESSAGE:{
             let newMassage = {
                 id: state.messagesData.length,
                 Message: state.newMessageContent
             }
-            state.messagesData.push(newMassage);
-            state.newMessageContent = "";
-            return state;
+            let stateCopy = {...state};
+            stateCopy.messagesData = [...state.messagesData];
+            stateCopy.messagesData.push(newMassage);
+            stateCopy.newMessageContent = '';
+            return stateCopy;
         }
         case UPDATE_MESSAGE:{
-            state.newMessageContent = action.text;
-            return state;
+            let stateCopy = {...state};
+            stateCopy.newMessageContent = action.text;
+            return stateCopy;
         }
         default: return state;
     }

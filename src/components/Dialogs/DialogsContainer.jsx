@@ -10,7 +10,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let forDispatch = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
     return {
         sendMessage: () => {
             dispatch(actionSendMessage());
@@ -21,6 +21,6 @@ let forDispatch = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, forDispatch)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
