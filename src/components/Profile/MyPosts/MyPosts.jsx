@@ -4,13 +4,14 @@ import Post from './Post/Post';
 
 function MyPosts(props) {
 
+    
     let postArr = props.postsData.map(x => (<Post id={x.id} name={x.name} postText={x.postText} likes={x.likes} />));
  
     function addPost() {
         props.addPost();
     }
 
-    function updateNewPost(e) {   
+    function updateNewPost(e) {  
         let text = e.target.value;
         props.updatePost(text);
     }

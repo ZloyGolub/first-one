@@ -19,9 +19,6 @@ let renderPage = () => ReactDOM.render(
 
 renderPage();
 
-store.subscribe(() => {
-    renderPage()
-});
 
 // ReactDOM.render(<Header />, document.getElementById('root'));
 

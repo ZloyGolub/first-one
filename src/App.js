@@ -1,5 +1,4 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -11,7 +10,7 @@ import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
 
-function App(props) {
+function App() {
   return (
     <div className="app-wrapper">
       <div className="Header round-borders">

@@ -3,8 +3,7 @@ import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
-function Profile(props){
-    
+function Profile(){
     return (
         <div className={s.main_content}>
             <ProfileInfo />

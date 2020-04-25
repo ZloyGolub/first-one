@@ -10,8 +10,11 @@ function Dialogs(props) {
     //         return <Dialog Name={x.name} path={x.id}/>;
     //     }
     // )
-    let dialogArr = props.dialogsData.map(x => (<Dialog Name={x.name} path={x.id} />));
-    let messageArr = props.messagesData.map(x => (<Message Message={x.Message} id={x.id} />));
+    debugger
+    let state = props.dialog;
+
+    let dialogArr = state.dialogsData.map(x => (<Dialog Name={x.name} path={x.id} />));
+    let messageArr = state.messagesData.map(x => (<Message Message={x.Message} id={x.id} />));
 
     function sendMessage() {
         props.sendMessage();
