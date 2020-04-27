@@ -1,24 +1,39 @@
-import React from 'react'
+import React from 'react';
+import s from './User.module.css';
 
 function User(props) {
+
+    function follow() {
+        props.follow(props.id);
+    }
+
+    function unfollow() {
+        props.unfollow(props.id);
+    }
     return (
         <div>
-            <div>
-                <div>
-                    <img src={props.imgUrl} alt="" />
+            <div className={s.wrapper}>
+                <div className={s.avatar_button}>
+                    <div>
+                        <img src={props.imgUrl} alt="" />
+                    </div>
                     {props.sub ?
-                        <button>Folow</button>
+                        <button onClick={unfollow}>Unsubscribe</button>
                         :
-                        <button>Unsubscribe</button>
+                        <button onClick={follow}>Follow</button>
                     }
                 </div>
-                <div>
+                <div className={s.name_bio}>
                     <div>{props.name}</div>
                     <div>{props.bio}</div>
                 </div>
-                <div>
+                <div className={s.country_status}>
                     <div>{props.country}</div>
-                    <div>{props.status}</div>
+                    {props.status ?
+                        <div>Online</div>
+                        :
+                        <div>Offline</div>
+                    }
                 </div>
             </div>
         </div>

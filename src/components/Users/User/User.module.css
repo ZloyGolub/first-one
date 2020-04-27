@@ -1,0 +1,23 @@
+.wrapper{
+    display: grid;
+    align-items: flex-start;
+    justify-items: center;
+    grid-template-columns: 1fr 3fr 1fr;
+    background-color: grey;
+    border-radius: 4px;
+}
+
+.avatar_button .name_bio .country_status{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar_button > button {
+    width: 100px;
+    min-height: 30px;
+}
+
+.avatar_button img{
+    object-fit: cover;
+}

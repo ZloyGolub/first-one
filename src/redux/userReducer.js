@@ -1,25 +1,22 @@
 const FOLLOW = "FOLLOW";
 const UNFOLOW = "UNFOLOW";
+const SHOWMORE = "SHOWMORE";
 
 let initialState = {
-    users: [
-        {
-            id: 0, imgUrl: "https://dummyimage.com/100x100/f0f0f0/aaa", sub: false,
-            name: "Snek", bio: "some description", country: "Uk", status: false
-        }
-    ]
+    users: [    ]
 }
 
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW: {
-            return {
+            return {                
                 ...state,
                 users: state.users.map(x => {
                     if (x.id === action.id) {
                         return { ...x, sub: true }
                     }
+                    return x;
                 })
             }
         }
@@ -30,7 +27,14 @@ const userReducer = (state = initialState, action) => {
                     if (x.id === action.id) {
                         return { ...x, sub: false }
                     }
+                    return x;
                 })
+            }
+        }
+        case SHOWMORE: {
+            return {
+                ...state,
+                users: [...state.users, ...action.users]
             }
         }
         default: return state;
@@ -39,10 +43,13 @@ const userReducer = (state = initialState, action) => {
 
 
 export const followAC = (id) => {
-    return { type: FOLLOW, id: id }
+    return { type: FOLLOW, id }
 }
 export const unfollowAC = (id) => {
-    return { type: UNFOLOW, id: id}
+    return { type: UNFOLOW, id}
+}
+export const showmoreAC = (users) =>{
+    return {type: SHOWMORE, users}
 }
 
 export default userReducer;
