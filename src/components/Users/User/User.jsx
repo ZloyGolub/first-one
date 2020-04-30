@@ -15,9 +15,9 @@ function User(props) {
             <div className={s.wrapper}>
                 <div className={s.avatar_button}>
                     <div>
-                        <img src={props.imgUrl} alt="" />
+                        <img src={props.photos.large} alt="" />
                     </div>
-                    {props.sub ?
+                    {props.followed ?
                         <button onClick={unfollow}>Unsubscribe</button>
                         :
                         <button onClick={follow}>Follow</button>
@@ -25,16 +25,16 @@ function User(props) {
                 </div>
                 <div className={s.name_bio}>
                     <div>{props.name}</div>
-                    <div>{props.bio}</div>
+                    <div>{props.status}</div>
                 </div>
-                <div className={s.country_status}>
+                {/* <div className={s.country_status}>
                     <div>{props.country}</div>
                     {props.status ?
                         <div>Online</div>
                         :
                         <div>Offline</div>
                     }
-                </div>
+                </div> */}
             </div>
         </div>
     )

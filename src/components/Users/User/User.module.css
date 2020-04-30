@@ -14,10 +14,11 @@
 }
 
 .avatar_button > button {
-    width: 100px;
+    width: 150px;
     min-height: 30px;
 }
 
 .avatar_button img{
     object-fit: cover;
+    height: 150px;
 }
