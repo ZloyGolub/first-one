@@ -1,68 +1,37 @@
 import React from 'react'
-import User from './User/User'
 import s from './UsersAll.module.css'
-import * as Axios from 'axios';
+import User from './User/User'
 
-class UsersAll extends React.Component {
+let UsersAll = (props) => {
 
-    // function showmore() {
-    //     props.showmore([
-    //         {
-    //             id: 0, imgUrl: "https://dummyimage.com/100x100/f0f0f0/aaa", sub: false,
-    //             name: "Snek", bio: "some description", country: "Uk", status: false
-    //         }
-    //     ]
-    //     )
-    // }   //типа запрос на сервак но нет
+    let Users = props.users.map(x => (
+        <User id={x.id} photos={x.photos} followed={x.followed} name={x.name} status={x.status}
+            follow={props.follow} unfollow={props.unfollow} />))
 
+    let pagesCount = Math.ceil(props.usersCount / props.pageSize);
 
-    componentDidMount() {
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setCountUsers(response.data.totalCount);
-        });
-    } 
-
-    setPage = (pageNumber) => {
-        this.props.setPage(pageNumber);
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setCountUsers(response.data.totalCount);
-        });
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
 
-    render() {
-        let Users = this.props.users.map(x => (
-            <User id={x.id} photos={x.photos} followed={x.followed} name={x.name} status={x.status}
-                follow={this.props.follow} unfollow={this.props.unfollow} />))
-
-        let pagesCount = Math.ceil(this.props.usersCount / this.props.pageSize);
-
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
-        }
-
-        return (
-            <div>
-                <div>
-                    {/* {pages.map(x => (<span className={s.active}>{alert(x)}</span>))} */}
-                    {pages.map( x => {
-                        return <button className={this.props.currentPage === x && s.active} 
-                        onClick={(e) => this.setPage(x) }>{x}</button>
-                    })}
-                </div>
-                <div>
-                    {Users}
-                </div>
-                <div className={s.Button}>
-                    <button >Show more</button>
-                </div>
-            </div>
-        );
-    }
+    return (
+        <div>
+        <div>
+            {/* {pages.map(x => (<span className={s.active}>{alert(x)}</span>))} */}
+            {pages.map( x => {
+                return <button className={props.currentPage === x && s.active} 
+                onClick={(e) => props.setPage(x) }>{x}</button>
+            })}
+        </div>
+        <div>
+            {Users}
+        </div>
+        <div className={s.Button}>
+            <button >Show more</button>
+        </div>
+    </div>
+    )
 }
 
 export default UsersAll;
