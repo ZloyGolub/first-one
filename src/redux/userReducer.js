@@ -3,14 +3,15 @@ const UNFOLOW = "UNFOLOW";
 const SHOWMORE = "SHOWMORE";
 const SET_PAGE = "SET_PAGE";
 const SET_COUNT = "SET_COUNT";
+const SET_LOADER = "SET_LOADER";
 
 let initialState = {
     users: [    ],
     pageSize: 10,
     usersCount: 1,
-    currentPage: 1
+    currentPage: 1,
+    loader: true
 }
-
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -54,6 +55,12 @@ const userReducer = (state = initialState, action) => {
                 usersCount: action.count
             }
         }
+        case SET_LOADER: {
+            return{
+                ...state,
+                loader: action.loader
+            }
+        }
         default: return state;
     }
 }
@@ -72,5 +79,7 @@ export const setPageAC = (page) => {
     return {type: SET_PAGE, page}
 }
 export const setCountUsers = (count) => ({type: SET_COUNT, count})
+
+export const setLoaderAC = (loader) => ({type: SET_LOADER, loader})
 
 export default userReducer;

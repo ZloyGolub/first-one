@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './User.module.css';
-import UserPic from './../../../assets/user.png';
+import UserPic from './../../../assets/images/user.png';
 
 function User(props) {
 
@@ -12,6 +12,7 @@ function User(props) {
         props.unfollow(props.id);
     }
     return (
+        
         <div>
             <div className={s.wrapper}>
                 <div className={s.avatar_button}>

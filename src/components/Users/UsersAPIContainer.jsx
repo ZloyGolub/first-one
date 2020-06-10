@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
-import { followAC, unfollowAC, setUsersAC, setPageAC, setCountUsers } from "../../redux/userReducer";
+import { followAC, unfollowAC, setUsersAC, setPageAC, setCountUsers, setLoaderAC } from "../../redux/userReducer";
 import React from 'react';
 import * as Axios from 'axios';
 import UsersAll from './UsersAll';
+import Preloader from './../common/Preloader/Preloader';
 
 class UsersAPIComponent extends React.Component {
 
@@ -18,32 +19,40 @@ class UsersAPIComponent extends React.Component {
 
 
     componentDidMount() {
+        this.props.setLoader(true);
         Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setCountUsers(response.data.totalCount);
-        });
-    } 
+            .then(response => {
+                this.props.setLoader(false);
+                this.props.setUsers(response.data.items);
+                this.props.setCountUsers(response.data.totalCount);
+            });
+    }
 
     setPage = (pageNumber) => {
+        this.props.setLoader(true);
         this.props.setPage(pageNumber);
         Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-        .then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setCountUsers(response.data.totalCount);
-        });
+            .then(response => {
+                this.props.setLoader(false);
+                this.props.setUsers(response.data.items);
+                this.props.setCountUsers(response.data.totalCount);
+            });
+        
     }
 
     render() {
         return (
-            <UsersAll users ={this.props.users}
-            follow = {this.props.follow}
-            unfollow = {this.props.unfollow}
-            usersCount = {this.props.usersCount}
-            pageSize = {this.props.pageSize}
-            currentPage = {this.props.currentPage}
-            setPage = {this.setPage}
+        <>
+            {this.props.loader ? <Preloader/> : null}
+            <UsersAll users={this.props.users}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+                usersCount={this.props.usersCount}
+                pageSize={this.props.pageSize}
+                currentPage={this.props.currentPage}
+                setPage={this.setPage}
             />
+        </>
         );
     }
 }
@@ -53,7 +62,8 @@ let mapStateToProps = (state) => {
         users: state.userPage.users,
         pageSize: state.userPage.pageSize,
         usersCount: state.userPage.usersCount,
-        currentPage: state.userPage.currentPage
+        currentPage: state.userPage.currentPage,
+        loader: state.userPage.loader
     }
 }
 
@@ -73,8 +83,11 @@ let mapDispatchToProps = (dispatch) => {
         },
         setCountUsers: (count) => {
             dispatch(setCountUsers(count))
+        },
+        setLoader: (loader) => {
+            dispatch(setLoaderAC(loader))
         }
-        
+
     }
 }
 
