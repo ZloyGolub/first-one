@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { followAC, unfollowAC, setUsersAC, setPageAC, setCountUsers, setLoaderAC } from "../../redux/userReducer";
+import { follow, unfollow, setUsers, setPage, setCountUsers, setLoader } from "../../redux/userReducer";
 import React from 'react';
 import * as Axios from 'axios';
 import UsersAll from './UsersAll';
@@ -67,30 +67,30 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (id) => {
-            dispatch(followAC(id));
-        },
-        unfollow: (id) => {
-            dispatch(unfollowAC(id));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setPage: (page) => {
-            dispatch(setPageAC(page))
-        },
-        setCountUsers: (count) => {
-            dispatch(setCountUsers(count))
-        },
-        setLoader: (loader) => {
-            dispatch(setLoaderAC(loader))
-        }
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (id) => {
+//             dispatch(followAC(id));
+//         },
+//         unfollow: (id) => {
+//             dispatch(unfollowAC(id));
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setPage: (page) => {
+//             dispatch(setPageAC(page))
+//         },
+//         setCountUsers: (count) => {
+//             dispatch(setCountUsers(count))
+//         },
+//         setLoader: (loader) => {
+//             dispatch(setLoaderAC(loader))
+//         }
 
-    }
-}
+//     }
+// }
 
-const UsersAPIContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+const UsersAPIContainer = connect(mapStateToProps, {follow, unfollow, setUsers, setPage, setCountUsers, setLoader})(UsersAPIComponent);
 
 export default UsersAPIContainer;

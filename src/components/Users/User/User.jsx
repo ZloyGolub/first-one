@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './User.module.css';
 import UserPic from './../../../assets/images/user.png';
+import {NavLink} from "react-router-dom";
 
 function User(props) {
 
@@ -17,7 +18,9 @@ function User(props) {
             <div className={s.wrapper}>
                 <div className={s.avatar_button}>
                     <div>
-                        <img src={props.photos.large != null ? props.photos.large : UserPic} alt="" />
+                        <NavLink to={'/profile/' + props.id}>
+                            <img src={props.photos.large != null ? props.photos.large : UserPic} alt="" />
+                        </NavLink>
                     </div>
                     {props.followed ?
                         <button onClick={unfollow}>Unsubscribe</button>
