@@ -8,3 +8,11 @@
     width: 100%;
     object-fit: cover;
 }
+
+.Login {
+    float: right;
+}
+
+.Login a {
+    color: white;
+}

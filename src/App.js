@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="app-wrapper">
       <div className="Header round-borders">
-        <Header />
+        <HeaderContainer />
       </div>
       <div className="navigation round-borders">
         <Navbar />
