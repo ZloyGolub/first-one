@@ -4,6 +4,7 @@ import React from 'react';
 import * as Axios from 'axios';
 import UsersAll from './UsersAll';
 import Preloader from './../common/Preloader/Preloader';
+import { usersApi } from "../../api/api";
 
 class UsersAPIComponent extends React.Component {
 
@@ -20,22 +21,23 @@ class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
         this.props.setLoader(true);
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{ withCredentials: true })
-            .then(response => {
+
+        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
+            .then(data => {
                 this.props.setLoader(false);
-                this.props.setUsers(response.data.items);
-                this.props.setCountUsers(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setCountUsers(data.totalCount);
             });
     }
 
     setPage = (pageNumber) => {
         this.props.setLoader(true);
         this.props.setPage(pageNumber);
-        Axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{ withCredentials: true })
-            .then(response => {
+        usersApi.getUsers(pageNumber, this.props.pageSize)        
+            .then(data => {
                 this.props.setLoader(false);
-                this.props.setUsers(response.data.items);
-                this.props.setCountUsers(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setCountUsers(data.totalCount);
             });
         
     }

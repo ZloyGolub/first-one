@@ -15,6 +15,9 @@ class ProfileContainer extends React.Component {
                 this.props.SetUserProfile(response.data);
             });
     }
+
+    
+
     render() {
         return (
             <Profile {...this.props} />
