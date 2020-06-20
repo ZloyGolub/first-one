@@ -3,38 +3,31 @@ import s from './User.module.css';
 import UserPic from './../../../assets/images/user.png';
 import { NavLink } from "react-router-dom";
 import * as Axios from 'axios';
+import { usersApi } from "./../../../api/api";
 
 function User(props) {
 
 
     function unfollow() {
-        Axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {
-            withCredentials: true,
-            headers:
-            {
-                'API-KEY': 'e9c646da-fb0b-4307-8fc1-300152672f28'
-            }
-        })
-            .then(response => {
-                if (response.data.resultCode === 0) {
+        props.setButtonLock(true,props.id);
+        usersApi.unfollow(props.id)
+            .then(data => {
+                if (data.resultCode === 0) {
                     props.unfollow(props.id);
                 }
+                props.setButtonLock(false,props.id);
             })
     }
 
 
     function follow() {
-        Axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {}, {
-            withCredentials: true,
-            headers:
-            {
-                'API-KEY': 'e9c646da-fb0b-4307-8fc1-300152672f28'
-            }
-        })
-            .then(response => {
-                if (response.data.resultCode === 0) {
+        props.setButtonLock(true, props.id);
+        usersApi.follow(props.id)
+            .then(data => {
+                if (data.resultCode === 0) {
                     props.follow(props.id);
                 }
+                props.setButtonLock(false,props.id);
             })
     }
 
@@ -49,10 +42,11 @@ function User(props) {
                             <img src={props.photos.large != null ? props.photos.large : UserPic} alt="" />
                         </NavLink>
                     </div>
-                    {props.followed ?
-                        <button onClick={unfollow}>Unsubscribe</button>
+                    {props.followed
+                        ?
+                        <button disabled={props.buttonLock.some(id => id === props.id)} onClick={unfollow}>Unsubscribe</button>
                         :
-                        <button onClick={follow}>Follow</button>
+                        <button disabled={props.buttonLock.some(id => id === props.id)} onClick={follow}>Follow</button>
                     }
                 </div>
                 <div className={s.name_bio}>

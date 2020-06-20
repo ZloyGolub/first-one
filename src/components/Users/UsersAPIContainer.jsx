@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, unfollow, setUsers, setPage, setCountUsers, setLoader } from "../../redux/userReducer";
+import { follow, unfollow, setUsers, setPage, setCountUsers, setLoader, setButtonLock } from "../../redux/userReducer";
 import React from 'react';
 import * as Axios from 'axios';
 import UsersAll from './UsersAll';
@@ -33,28 +33,30 @@ class UsersAPIComponent extends React.Component {
     setPage = (pageNumber) => {
         this.props.setLoader(true);
         this.props.setPage(pageNumber);
-        usersApi.getUsers(pageNumber, this.props.pageSize)        
+        usersApi.getUsers(pageNumber, this.props.pageSize)
             .then(data => {
                 this.props.setLoader(false);
                 this.props.setUsers(data.items);
                 this.props.setCountUsers(data.totalCount);
             });
-        
+
     }
 
     render() {
         return (
-        <>
-            {this.props.loader ? <Preloader/> : null}
-            <UsersAll users={this.props.users}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
-                usersCount={this.props.usersCount}
-                pageSize={this.props.pageSize}
-                currentPage={this.props.currentPage}
-                setPage={this.setPage}
-            />
-        </>
+            <>
+                {this.props.loader ? <Preloader /> : null}
+                <UsersAll users={this.props.users}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
+                    usersCount={this.props.usersCount}
+                    pageSize={this.props.pageSize}
+                    currentPage={this.props.currentPage}
+                    setPage={this.setPage}
+                    setButtonLock={this.props.setButtonLock}
+                    buttonLock={this.props.buttonLock}
+                />
+            </>
         );
     }
 }
@@ -65,7 +67,8 @@ let mapStateToProps = (state) => {
         pageSize: state.userPage.pageSize,
         usersCount: state.userPage.usersCount,
         currentPage: state.userPage.currentPage,
-        loader: state.userPage.loader
+        loader: state.userPage.loader,
+        buttonLock: state.userPage.buttonLock
     }
 }
 
@@ -93,6 +96,6 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-const UsersAPIContainer = connect(mapStateToProps, {follow, unfollow, setUsers, setPage, setCountUsers, setLoader})(UsersAPIComponent);
+const UsersAPIContainer = connect(mapStateToProps, { follow, unfollow, setUsers, setPage, setCountUsers, setLoader, setButtonLock })(UsersAPIComponent);
 
 export default UsersAPIContainer;

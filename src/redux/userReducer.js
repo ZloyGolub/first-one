@@ -4,19 +4,21 @@ const SHOWMORE = "SHOWMORE";
 const SET_PAGE = "SET_PAGE";
 const SET_COUNT = "SET_COUNT";
 const SET_LOADER = "SET_LOADER";
+const SET_BUTTON_LOCK = "SET_BUTTON_LOCK";
 
 let initialState = {
-    users: [    ],
-    pageSize: 10,
+    users: [],
+    pageSize: 50,
     usersCount: 1,
     currentPage: 1,
-    loader: true
+    loader: true,
+    buttonLock: []
 }
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW: {
-            return {                
+            return {
                 ...state,
                 users: state.users.map(x => {
                     if (x.id === action.id) {
@@ -40,7 +42,7 @@ const userReducer = (state = initialState, action) => {
         case SHOWMORE: {
             return {
                 ...state,
-                users: [ ...action.users]
+                users: [...action.users]
             }
         }
         case SET_PAGE: {
@@ -50,15 +52,24 @@ const userReducer = (state = initialState, action) => {
             }
         }
         case SET_COUNT: {
-            return{
+            return {
                 ...state,
                 usersCount: action.count
             }
         }
         case SET_LOADER: {
-            return{
+            return {
                 ...state,
                 loader: action.loader
+            }
+        }
+        case SET_BUTTON_LOCK: {
+            return {
+                ...state,
+                buttonLock: action.buttonLock ?
+                    [...state.buttonLock, action.id]
+                    :
+                    state.buttonLock.filter(id => id != action.id)
             }
         }
         default: return state;
@@ -70,16 +81,19 @@ export const follow = (id) => {
     return { type: FOLLOW, id }
 }
 export const unfollow = (id) => {
-    return { type: UNFOLOW, id}
+    return { type: UNFOLOW, id }
 }
-export const setUsers = (users) =>{
-    return {type: SHOWMORE, users}
+export const setUsers = (users) => {
+    return { type: SHOWMORE, users }
 }
 export const setPage = (page) => {
-    return {type: SET_PAGE, page}
+    return { type: SET_PAGE, page }
 }
-export const setCountUsers = (count) => ({type: SET_COUNT, count})
+export const setCountUsers = (count) => ({ type: SET_COUNT, count })
 
-export const setLoader = (loader) => ({type: SET_LOADER, loader})
+export const setLoader = (loader) => ({ type: SET_LOADER, loader })
+
+export const setButtonLock = (buttonLock, id) => ({ type: SET_BUTTON_LOCK, buttonLock, id })
+
 
 export default userReducer;
