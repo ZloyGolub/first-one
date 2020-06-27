@@ -9,26 +9,28 @@ function User(props) {
 
 
     function unfollow() {
-        props.setButtonLock(true,props.id);
-        usersApi.unfollow(props.id)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    props.unfollow(props.id);
-                }
-                props.setButtonLock(false,props.id);
-            })
+        props.unfollow(props.id);
+        // props.setButtonLock(true, props.id);
+        // usersApi.unfollow(props.id)
+        //     .then(data => {
+        //         if (data.resultCode === 0) {
+        //             props.unfollow(props.id);
+        //         }
+        //         props.setButtonLock(false, props.id);
+        //     })
     }
 
 
     function follow() {
-        props.setButtonLock(true, props.id);
-        usersApi.follow(props.id)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    props.follow(props.id);
-                }
-                props.setButtonLock(false,props.id);
-            })
+        props.follow(props.id);
+        // props.setButtonLock(true, props.id);
+        // usersApi.follow(props.id)
+        //     .then(data => {
+        //         if (data.resultCode === 0) {
+        //             props.follow(props.id);
+        //         }
+        //         props.setButtonLock(false, props.id);
+        //     })
     }
 
 

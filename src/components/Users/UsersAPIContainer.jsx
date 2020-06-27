@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { follow, unfollow, setUsers, setPage, setCountUsers, setLoader, setButtonLock } from "../../redux/userReducer";
+import { follow, unfollow, setPage, setButtonLock, getUsers } from "../../redux/userReducer";
 import React from 'react';
 import * as Axios from 'axios';
 import UsersAll from './UsersAll';
@@ -20,26 +20,29 @@ class UsersAPIComponent extends React.Component {
 
 
     componentDidMount() {
-        this.props.setLoader(true);
 
-        usersApi.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setLoader(false);
-                this.props.setUsers(data.items);
-                this.props.setCountUsers(data.totalCount);
-            });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        // this.props.setLoader(true);
+
+        // usersApi.getUsers(this.props.currentPage, this.props.pageSize)
+        //     .then(data => {
+        //         this.props.setLoader(false);
+        //         this.props.setUsers(data.items);
+        //         this.props.setCountUsers(data.totalCount);
+        //     });
     }
 
     setPage = (pageNumber) => {
-        this.props.setLoader(true);
-        this.props.setPage(pageNumber);
-        usersApi.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.setLoader(false);
-                this.props.setUsers(data.items);
-                this.props.setCountUsers(data.totalCount);
-            });
+        this.props.getUsers(pageNumber, this.props.pageSize);
 
+        // this.props.setLoader(true);
+        // this.props.setPage(pageNumber);
+        // usersApi.getUsers(pageNumber, this.props.pageSize)
+        //     .then(data => {
+        //         this.props.setLoader(false);
+        //         this.props.setUsers(data.items);
+        //         this.props.setCountUsers(data.totalCount);
+        //     });
     }
 
     render() {
@@ -96,6 +99,11 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-const UsersAPIContainer = connect(mapStateToProps, { follow, unfollow, setUsers, setPage, setCountUsers, setLoader, setButtonLock })(UsersAPIComponent);
+const UsersAPIContainer = connect(mapStateToProps,
+    {
+        follow, unfollow,
+        setPage,
+        setButtonLock, getUsers
+    })(UsersAPIComponent);
 
 export default UsersAPIContainer;

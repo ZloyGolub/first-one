@@ -1,3 +1,5 @@
+import {usersApi} from './../api/api';
+
 const FOLLOW = "FOLLOW";
 const UNFOLOW = "UNFOLOW";
 const SHOWMORE = "SHOWMORE";
@@ -77,16 +79,16 @@ const userReducer = (state = initialState, action) => {
 }
 
 
-export const follow = (id) => {
+export const doFollow = (id) => {
     return { type: FOLLOW, id }
 }
-export const unfollow = (id) => {
+export const doUnfollow = (id) => {
     return { type: UNFOLOW, id }
 }
 export const setUsers = (users) => {
     return { type: SHOWMORE, users }
 }
-export const setPage = (page) => {
+export const setPage = (page = 1) => {
     return { type: SET_PAGE, page }
 }
 export const setCountUsers = (count) => ({ type: SET_COUNT, count })
@@ -95,5 +97,46 @@ export const setLoader = (loader) => ({ type: SET_LOADER, loader })
 
 export const setButtonLock = (buttonLock, id) => ({ type: SET_BUTTON_LOCK, buttonLock, id })
 
+//ThunkCreator
+
+export const getUsers = (currentPage, pageSize) => {  
+    return (dispatch) => {
+        dispatch(setLoader(true));
+        dispatch(setPage(currentPage));
+        usersApi.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(setLoader(false));
+                dispatch(setUsers(data.items));
+                dispatch(setCountUsers(data.totalCount));
+            });
+    }
+}
+
+export const follow = (id) => {  
+    return (dispatch) => {
+        dispatch(setButtonLock(true, id));
+        usersApi.follow(id)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(doFollow(id));
+                }
+                dispatch(setButtonLock(false, id));
+            })
+    }
+}
+
+
+export const unfollow = (id) => {  
+    return (dispatch) => {
+        dispatch(setButtonLock(true, id));
+        usersApi.unfollow(id)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(doUnfollow(id));
+                }
+                dispatch(setButtonLock(false, id));
+            })
+    }
+}
 
 export default userReducer;
