@@ -97,7 +97,7 @@ export const setLoader = (loader) => ({ type: SET_LOADER, loader })
 
 export const setButtonLock = (buttonLock, id) => ({ type: SET_BUTTON_LOCK, buttonLock, id })
 
-//ThunkCreator
+//ThunkCreators
 
 export const getUsers = (currentPage, pageSize) => {  
     return (dispatch) => {
