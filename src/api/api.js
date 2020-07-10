@@ -40,6 +40,15 @@ export const headerApi = {
     }
 }
 
+export const profileApi = {
+    getProfile(id){
+        return instance.get(`profile/${id}`)
+        .then(response => {
+            return response.data;
+        })
+    }
+}
+
 
 // export const getUsers = (currentPage = 1, pageSize = 10) => {
 //     return instance.get(`users?page=${currentPage}&count=${pageSize}`)
