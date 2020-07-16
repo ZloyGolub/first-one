@@ -123,8 +123,7 @@ export const follow = (id) => {
                 dispatch(setButtonLock(false, id));
             })
     }
-}
-
+} 
 
 export const unfollow = (id) => {  
     return (dispatch) => {

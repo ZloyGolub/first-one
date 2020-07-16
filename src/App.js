@@ -10,6 +10,7 @@ import Settings from './components/Settings/Settings';
 import { Route } from 'react-router-dom';
 import UsersAPIContainer from './components/Users/UsersAPIContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import Login from './components/Login/Login';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/music" render={() => <Music />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/settings" render={() => <Settings />} />
+        <Route path="/login" render={() => <Login />} />
       </div>
       <div className="footer round-borders">
         <Footer />
