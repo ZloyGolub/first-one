@@ -6,6 +6,7 @@ import UsersAll from './UsersAll';
 import Preloader from './../common/Preloader/Preloader';
 import { usersApi } from "../../api/api";
 import { AuthRedirect } from "../../hoc/AuthRedirect";
+import { compose } from "redux";
 
 class UsersAPIComponent extends React.Component {
 
@@ -100,13 +101,23 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-let RedirectComponent = AuthRedirect(UsersAPIComponent);
+export default compose(
+    connect(mapStateToProps,
+        {
+            follow, unfollow,
+            setPage,
+            setButtonLock, getUsers
+        }),
+    AuthRedirect
+)(UsersAPIComponent)
 
-const UsersAPIContainer = connect(mapStateToProps,
-    {
-        follow, unfollow,
-        setPage,
-        setButtonLock, getUsers
-    })(RedirectComponent);
+// let RedirectComponent = AuthRedirect(UsersAPIComponent);
 
-export default UsersAPIContainer;
+// const UsersAPIContainer = connect(mapStateToProps,
+//     {
+//         follow, unfollow,
+//         setPage,
+//         setButtonLock, getUsers
+//     })(RedirectComponent);
+
+// export default UsersAPIContainer;
