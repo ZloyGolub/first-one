@@ -32,9 +32,9 @@ function Dialogs(props) {
         props.updateMessage(text);
     }
 
-    if (props.isAuth === false) {
-        return <Redirect to={'/login'}/>
-    }
+    // if (props.isAuth === false) {
+    //     return <Redirect to={'/login'}/>
+    // }
 
     return (
         <div className={s.wrapper}>
