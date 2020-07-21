@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { AuthRedirect } from '../../hoc/AuthRedirect';
 
-
 let mapStateToProps = (state) => {
     return {
-        dialog: state.dialog,
-        isAuth: state.auth.isAuth
+        dialog: state.dialog
     }
 }
 
@@ -24,7 +22,15 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-let RedirectComponent = AuthRedirect(Dialogs);
+let mapStateToPropsForRedirect = (state) => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+
+let RedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirect(Dialogs));
+
+// RedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
 
 // let RedirectComponent = (props) => {    
 //     if (this.props.isAuth === false) {
