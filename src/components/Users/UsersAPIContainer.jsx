@@ -5,6 +5,7 @@ import * as Axios from 'axios';
 import UsersAll from './UsersAll';
 import Preloader from './../common/Preloader/Preloader';
 import { usersApi } from "../../api/api";
+import { AuthRedirect } from "../../hoc/AuthRedirect";
 
 class UsersAPIComponent extends React.Component {
 
@@ -99,11 +100,13 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
+let RedirectComponent = AuthRedirect(UsersAPIComponent);
+
 const UsersAPIContainer = connect(mapStateToProps,
     {
         follow, unfollow,
         setPage,
         setButtonLock, getUsers
-    })(UsersAPIComponent);
+    })(RedirectComponent);
 
 export default UsersAPIContainer;

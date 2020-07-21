@@ -22,22 +22,7 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-let mapStateToPropsForRedirect = (state) => {
-    return {
-        isAuth: state.auth.isAuth
-    }
-}
-
-let RedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirect(Dialogs));
-
-// RedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
-
-// let RedirectComponent = (props) => {    
-//     if (this.props.isAuth === false) {
-//         return <Redirect to={'/login'} />
-//     }
-//     return <Dialogs {...props}/>
-// }
+let RedirectComponent = AuthRedirect(Dialogs);
 
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(RedirectComponent);
 
