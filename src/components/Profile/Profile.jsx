@@ -9,6 +9,7 @@ function Profile(props) {
 
     return (
         <div className={s.main_content}>
+
             <ProfileInfo profile={props.profile} />
             <MyPostsContainer />
         </div>
