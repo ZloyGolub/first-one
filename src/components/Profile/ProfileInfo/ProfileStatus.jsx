@@ -4,7 +4,22 @@ import s from './ProfileInfo.module.css';
 
 class ProfileStatus extends React.Component {
     state = {
-        editMode: true
+        editMode: false
+    }
+
+    ActivatEdit = () => {
+        this.setState({
+            editMode: true
+        })
+        
+        //this.state.editMode=true;
+        //this.forceUpdate()
+    }
+
+    DeactivatEdit = () => {
+        this.setState({
+            editMode: false
+        })
     }
 
     render() {
@@ -12,12 +27,12 @@ class ProfileStatus extends React.Component {
             <>
                 {!this.state.editMode &&
                     <div>
-                        {this.props.aboutMe}
+                        <span onDoubleClick={this.ActivatEdit}>{this.props.aboutMe}</span>
                     </div>
                 }
                 {this.state.editMode &&
                     <div>
-                        <input value={this.props.aboutMe} />
+                        <input autoFocus={true} onBlur={this.DeactivatEdit} value={this.props.aboutMe} />
                     </div>
                 }
             </>
