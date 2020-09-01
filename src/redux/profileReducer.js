@@ -3,6 +3,8 @@ import { profileApi } from "../api/api";
 const ADD_POST = "ADD_POST";
 const UPDATE_POST = "UPDATE_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_USER_STATUS = "SET_USER_STATUS";
+const UPDATE_USER_STATUS = "UPDATE_USER_STATUS";
 
 let initialState = {
     postsData: [
@@ -10,7 +12,8 @@ let initialState = {
         { id: 1, name: "Dog", postText: "Bark", likes: 13 }
     ],
     newPostContent: "",
-    profile: null
+    profile: null,
+    status: ""
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -49,6 +52,18 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             }
         }
+        case SET_USER_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
+        case UPDATE_USER_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
 
         default: return state;
     }
@@ -65,6 +80,9 @@ export const actionUpdatePost = (text) => {
 
 export const SetUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 
+export const SetUserStatus = (status) => ({ type: SET_USER_STATUS, status })
+
+export const updataUserStatus = (status) => ({ type: UPDATE_USER_STATUS, status })
 //ThunkCreators
 
 export const getProfile = (id) => {
@@ -72,6 +90,25 @@ export const getProfile = (id) => {
         profileApi.getProfile(id)
             .then(data => {
                 dispatch(SetUserProfile(data));
+            })
+    }
+}
+
+export const getStatus = (id) => {
+    return (dispatch) => {
+        profileApi.getStatus(id)
+            .then(data => {
+                dispatch(SetUserStatus(data));
+            })
+    }
+}
+//todo
+export const updateStatus = (status) => {
+    return (dispatch) => {
+        profileApi.updateStatus(status)
+            .then(data => {
+                if (data.resultCode === 0)
+                    dispatch(updataUserStatus(status));
             })
     }
 }
